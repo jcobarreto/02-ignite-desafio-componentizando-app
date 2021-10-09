@@ -5,7 +5,7 @@ import '../styles/sidebar.scss';
 interface SidebarProps {
   genres: Array<{
   id: number;
-  name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
+  name: 'all' | 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
   title: string;
   }>;
   selectedGenreId: number;
@@ -16,7 +16,7 @@ export function SideBar({
   genres,
   selectedGenreId,
   buttonClickCallback
-}: SidebarProps) {  
+}: SidebarProps) {
   return (
     <nav className="sidebar">
       <span>Watch<p>Me</p></span>

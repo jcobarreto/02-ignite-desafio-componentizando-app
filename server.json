@@ -1,6 +1,11 @@
 {
   "genres": [
     {
+      "id": 0,
+      "name": "family",
+      "title": "Todas"
+    },
+    {
       "id": 1,
       "name": "action",
       "title": "Ação"

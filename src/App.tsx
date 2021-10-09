@@ -9,7 +9,7 @@ import './styles/global.scss';
 
 interface GenreResponseProps {
   id: number;
-  name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
+  name: 'all' | 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family';
   title: string;
 }
 
@@ -25,11 +25,15 @@ interface MovieProps {
 }
 
 export function App() {
-  const [selectedGenreId, setSelectedGenreId] = useState(1);
+  const [selectedGenreId, setSelectedGenreId] = useState(0);
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
 
   const [movies, setMovies] = useState<MovieProps[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>({} as GenreResponseProps);
+
+  const baseMovieUrl = "movies";
+  let movieUrl = "";
+  selectedGenreId === 0 ? movieUrl=`${baseMovieUrl}` : movieUrl=`${baseMovieUrl}/?Genre_id=${selectedGenreId}`
 
   useEffect(() => {
     api.get<GenreResponseProps[]>('genres').then(response => {
@@ -38,7 +42,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    api.get<MovieProps[]>(`movies/?Genre_id=${selectedGenreId}`).then(response => {
+    api.get<MovieProps[]>(movieUrl).then(response => {
       setMovies(response.data);
     });
 
@@ -50,7 +54,7 @@ export function App() {
   function handleClickButton(id: number) {
     setSelectedGenreId(id);
   }
-
+  
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       <SideBar
