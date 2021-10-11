@@ -1,4 +1,4 @@
-# :pizza: goRestaurant
+# :movie: MovieFlix
 
 Para executar esse projeto será necessário abrir dois terminais, um para o servidor (backend) e outro para o frontend.
 
